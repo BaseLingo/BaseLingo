@@ -6,7 +6,7 @@ export const METADATA = {
   description: "Learn languages and earn yield while you study. Deposit USDC, complete daily lessons, and withdraw with returns.",
   bannerImageUrl: 'https://i.imgur.com/2bsV8mV.png',
   iconImageUrl: 'https://i.imgur.com/brcnijg.png',
-  homeUrl: process.env.NEXT_PUBLIC_URL ?? "https://fulldemo-minikit.vercel.app",
+  homeUrl: process.env.NEXT_PUBLIC_URL ?? "https://baselingo.karnadash.win/",
   splashBackgroundColor: "#0066FF"
 }
 
