@@ -1,0 +1,41 @@
+# Nixpacks config for Next.js (frontend) using Yarn 4
+
+[variables]
+NODE_ENV = "production"
+NEXT_TELEMETRY_DISABLED = "1"
+
+[phases.setup]
+# Node 22 LTS + tools to compile native deps (e.g., sharp)
+nixPkgs = [
+  "nodejs_22",
+  "python3",
+  "pkg-config",
+  "gcc",
+  "gnumake",
+  "vips",
+  "git"
+]
+
+[phases.install]
+cmds = [
+  "corepack enable",
+  "corepack prepare yarn@4.5.1 --activate",
+  "yarn install --immutable"
+]
+
+[phases.build]
+cmds = [
+  "yarn build"
+]
+
+[start]
+# Bind Next.js to the platform port
+cmd = "yarn start -p ${PORT}"
+
+[caches]
+# Speed up CI/deploys by caching Yarn and Next.js caches
+paths = [
+  ".yarn/cache",
+  "node_modules/.cache",
+  ".next/cache"
+]
