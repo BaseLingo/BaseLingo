@@ -29,7 +29,7 @@ type TabType = "learn" | "earn" | "wallet";
 export default function App() {
   const { isFrameReady, setFrameReady, context } = useMiniKit();
   const [showDemo, setShowDemo] = useState(false);
-  const [activeTab, setActiveTab] = useState<TabType>("learn");
+  const [activeTab, setActiveTab] = useState<TabType>("earn");
 
   // Lesson state
   const [selected, setSelected] = useState<string | null>(null)
@@ -160,16 +160,6 @@ export default function App() {
         <div className="bg-white border-b border-border">
           <div className="flex">
             <button
-              onClick={() => handleTabChange("learn")}
-              className={`flex-1 py-4 text-sm font-semibold transition-all ${
-                activeTab === "learn"
-                  ? "text-blue-600 border-b-2 border-blue-600"
-                  : "text-gray-500 hover:text-gray-700"
-              }`}
-            >
-              📚 Learn
-            </button>
-            <button
               onClick={() => handleTabChange("earn")}
               className={`flex-1 py-4 text-sm font-semibold transition-all ${
                 activeTab === "earn"
@@ -177,7 +167,17 @@ export default function App() {
                   : "text-gray-500 hover:text-gray-700"
               }`}
             >
-              💰 Earn
+              � Earn
+            </button>
+            <button
+              onClick={() => handleTabChange("learn")}
+              className={`flex-1 py-4 text-sm font-semibold transition-all ${
+                activeTab === "learn"
+                  ? "text-blue-600 border-b-2 border-blue-600"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              � Learn
             </button>
             <button
               onClick={() => handleTabChange("wallet")}
@@ -194,6 +194,65 @@ export default function App() {
 
         {/* Tab Content */}
         <div className="p-6">
+          {/* EARN TAB */}
+          {activeTab === "earn" && (
+            <div>
+              <h2 className="text-xl font-bold mb-6 text-foreground">Earn & Withdraw</h2>
+
+              {/* Progress Meter */}
+              <div className="mb-6">
+                <CompletionMeter completed={posted} />
+              </div>
+
+              {/* Deposit/Withdraw Section */}
+              <div className="bg-white border border-border rounded-xl p-6 space-y-4 mb-6">
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Current deposit</p>
+                  <p className="text-2xl font-bold text-foreground">
+                    {current ? `${current.amount} €` : "0.00 €"}
+                  </p>
+                </div>
+
+                {current ? (
+                  <div className="space-y-4">
+                    <div className="pt-4 border-t border-border">
+                      <p className="text-sm text-muted-foreground mb-1">Withdrawable (with 3% yield)</p>
+                      <p className="text-2xl font-bold text-green-600">{withdrawable} €</p>
+                    </div>
+                    <button
+                      className="w-full px-6 py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition-colors"
+                      onClick={handleWithdraw}
+                    >
+                      Withdraw {withdrawable} €
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Amount (€)
+                      </label>
+                      <input
+                        type="number"
+                        value={amount}
+                        onChange={(e) => setAmount(Number(e.target.value))}
+                        className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        min="1"
+                      />
+                    </div>
+                    <button
+                      className="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                      onClick={handleDeposit}
+                      disabled={loading}
+                    >
+                      {loading ? "Signing..." : `Deposit ${amount} €`}
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
           {/* LEARN TAB */}
           {activeTab === "learn" && (
             <div>
@@ -264,65 +323,6 @@ export default function App() {
                         <span>Not quite — try again</span>
                       </div>
                     )}
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* EARN TAB */}
-          {activeTab === "earn" && (
-            <div>
-              <h2 className="text-xl font-bold mb-6 text-foreground">Earn & Withdraw</h2>
-
-              {/* Progress Meter */}
-              <div className="mb-6">
-                <CompletionMeter completed={posted} />
-              </div>
-
-              {/* Deposit/Withdraw Section */}
-              <div className="bg-white border border-border rounded-xl p-6 space-y-4 mb-6">
-                <div>
-                  <p className="text-sm text-muted-foreground mb-1">Current deposit</p>
-                  <p className="text-2xl font-bold text-foreground">
-                    {current ? `${current.amount} €` : "0.00 €"}
-                  </p>
-                </div>
-
-                {current ? (
-                  <div className="space-y-4">
-                    <div className="pt-4 border-t border-border">
-                      <p className="text-sm text-muted-foreground mb-1">Withdrawable (with 3% yield)</p>
-                      <p className="text-2xl font-bold text-green-600">{withdrawable} €</p>
-                    </div>
-                    <button
-                      className="w-full px-6 py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition-colors"
-                      onClick={handleWithdraw}
-                    >
-                      Withdraw {withdrawable} €
-                    </button>
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Amount (€)
-                      </label>
-                      <input
-                        type="number"
-                        value={amount}
-                        onChange={(e) => setAmount(Number(e.target.value))}
-                        className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        min="1"
-                      />
-                    </div>
-                    <button
-                      className="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
-                      onClick={handleDeposit}
-                      disabled={loading}
-                    >
-                      {loading ? "Signing..." : `Deposit ${amount} €`}
-                    </button>
                   </div>
                 )}
               </div>
