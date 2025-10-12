@@ -30,7 +30,7 @@ export default function App() {
   const { isFrameReady, setFrameReady, context } = useMiniKit();
   const [showDemo, setShowDemo] = useState(false);
   const [activeTab, setActiveTab] = useState<TabType>("learn");
-  
+
   // Lesson state
   const [selected, setSelected] = useState<string | null>(null)
   const [posted, setPosted] = useState(false)
@@ -43,7 +43,7 @@ export default function App() {
   const [current, setCurrent] = useState<ReturnType<typeof loadDeposit>>(null)
   const [amount, setAmount] = useState<number>(10)
   const [loading, setLoading] = useState(false)
-  
+
   // Wallet state
   const { signMessageAsync } = useSignMessage()
   const { isConnected, address } = useAccount()
@@ -60,7 +60,7 @@ export default function App() {
   useEffect(() => {
     // Load deposit only on client side
     setCurrent(loadDeposit())
-    
+
     // Try to reconnect the Farcaster miniapp connector on mount
     if (!isConnected) {
       reconnect({ connectors: [config.connectors[0]] })
