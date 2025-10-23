@@ -27,7 +27,7 @@ interface AuthResponse {
 type TabType = "learn" | "earn" | "wallet";
 
 export default function App() {
-  const { isFrameReady, setFrameReady, context } = useMiniKit();
+  const { isFrameReady, setFrameReady } = useMiniKit();
   const [showDemo, setShowDemo] = useState(false);
   const [activeTab, setActiveTab] = useState<TabType>("earn");
 
@@ -67,7 +67,7 @@ export default function App() {
     }
   }, [isConnected, reconnect])
 
-  const { data: authData, isLoading: isAuthLoading, error: authError } = useQuickAuth<AuthResponse>(
+  useQuickAuth<AuthResponse>(
     "/api/auth",
     { method: "GET" }
   );
@@ -367,7 +367,7 @@ export default function App() {
                           <span className="text-3xl">❌</span>
                         </div>
                         <h3 className="text-2xl font-display font-bold text-duolingo-red mb-2">Not quite right</h3>
-                        <p className="text-gray-600 mb-4">Try again! You've got this! 💪</p>
+                        <p className="text-gray-600 mb-4">Try again! You&apos;ve got this! 💪</p>
                         <button
                           onClick={() => setSelected(null)}
                           className="duolingo-button"

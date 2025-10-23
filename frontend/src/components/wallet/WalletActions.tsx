@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback } from "react";
 import {
   useAccount,
   useSendTransaction,
@@ -207,7 +207,7 @@ export function SignSiweMessage() {
 }
 
 export function SendEth() {
-  const { isConnected, chainId } = useAccount();
+  const { isConnected } = useAccount();
   const {
     sendTransaction,
     data,

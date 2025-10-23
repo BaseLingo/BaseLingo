@@ -37,7 +37,7 @@ export default function CompletionMeter({ completed }: { completed: boolean }) {
             🎉
           </div>
           <p className="text-2xl font-display font-bold text-duolingo-green mt-2">Lesson Complete!</p>
-          <p className="text-sm text-gray-600 mt-1">Great job! You're earning rewards! 💰</p>
+          <p className="text-sm text-gray-600 mt-1">Great job! You&apos;re earning rewards! 💰</p>
         </div>
       )}
     </div>
