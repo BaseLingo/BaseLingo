@@ -10,7 +10,8 @@ export default {
   theme: {
   	extend: {
       fontFamily: {
-        sans: ['DM Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['Fredoka', 'Inter', 'sans-serif'],
       },
   		colors: {
         background: 'var(--background)',
@@ -46,19 +47,16 @@ export default {
         border: 'var(--border)',
         input: 'var(--input)',
         ring: 'var(--ring)',
-        // Base-inspired color palette
-        'base-blue': {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#0052ff',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-          950: '#172554',
+        // Duolingo-inspired color palette
+        'duolingo': {
+          green: '#58cc02',
+          'green-light': '#7dd3fc',
+          orange: '#ff9600',
+          red: '#ff4b4b',
+          blue: '#1cb0f6',
+          purple: '#ce82ff',
+          pink: '#ff4b9b',
+          yellow: '#ffc800',
         }
   		},
   		borderRadius: {
