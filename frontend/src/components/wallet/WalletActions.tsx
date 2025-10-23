@@ -79,7 +79,7 @@ export function WalletConnect() {
 
       {/* Base Account Sign In Button */}
       <div className="mb-4">
-        <SignInWithBaseButton 
+        <SignInWithBaseButton
           align="center"
           variant="solid"
           colorScheme="light"
@@ -381,4 +381,3 @@ export function SendTransaction() {
   );
 }
 
- 

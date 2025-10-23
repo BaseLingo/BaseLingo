@@ -12,7 +12,7 @@ export function Providers({ children }: { children: ReactNode }) {
       notificationProxyUrl="/api/notify"
       autoConnect={true}
     >
-    
+
         {children}
     </MiniKitProvider>
     </Provider>

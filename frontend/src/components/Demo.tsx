@@ -171,7 +171,7 @@ export default function Demo() {
   };
 
   return (
-    <div style={{ 
+    <div style={{
       marginTop: (frameContext?.context as any)?.client?.safeAreaInsets?.top ?? 0,
       marginBottom: (frameContext?.context as any)?.client?.safeAreaInsets?.bottom ?? 0,
       marginLeft: (frameContext?.context as any)?.client?.safeAreaInsets?.left ?? 0,
@@ -180,12 +180,12 @@ export default function Demo() {
       <div className="w-[95%] max-w-lg mx-auto py-4 px-4">
         <div className="mb-6 mt-3 flex items-center justify-between">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img 
-            src="/base-logo.png" 
-            alt="Base" 
+          <img
+            src="/base-logo.png"
+            alt="Base"
             className="h-8 object-contain"
           />
-          
+
           {/* Profile picture - only show if context data is available */}
           {frameContext?.context && (frameContext.context as any)?.user?.pfpUrl && (
             <button
@@ -363,7 +363,7 @@ export default function Demo() {
                   <div className="space-y-4">
                     {/* Connection Status */}
                     <WalletConnect />
-                    
+
                     {/* Wallet Action Cells */}
                     <div className="space-y-2">
                       {walletActionDefinitions.map((walletAction) => (
